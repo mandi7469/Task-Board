@@ -5,8 +5,6 @@ const addTask = document.querySelector("#addTask");
 const todoColumn = document.querySelector("#todoColumn");
 let entries = [];
 
-
-
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
   const id = crypto.randomUUID();
@@ -23,7 +21,7 @@ function createTaskCard(task) {
   const taskDueDate = document.createElement("p");
   const deleteButton = document.createElement("a");
 
-  taskCard.setAttribute("id", "draggable");
+  taskCard.setAttribute("id", task.id);
   taskCard.className = "card w-100";
   taskTitle.className = "card-header";
   cardBody.className = "card-body";
@@ -43,10 +41,10 @@ function createTaskCard(task) {
   cardBody.appendChild(taskDueDate);
   cardBody.appendChild(deleteButton);
 
-  $( function() {
-    $( "#draggable" ).draggable();
-  } );
-
+  $(function () {
+    $("#" + task.id).draggable();
+  });
+  deleteButton.addEventListener("click", handleDeleteTask)
 }
 
 // Todo: create a function to render the task list and make cards draggable
@@ -57,7 +55,7 @@ function renderTaskList() {
     if (entries.length > 0)
       for (let index = 0; index < entries.length; index++) {
         const task = entries[index];
-        
+
         createTaskCard(task);
       }
   }
@@ -93,4 +91,13 @@ $(function () {
   $("#datepicker").datepicker();
 });
 
-renderTaskList() 
+
+// $( ".card-body" ).droppable({
+//   tolerance: "fit",
+// });
+
+
+
+renderTaskList();
+
+
