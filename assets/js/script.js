@@ -23,6 +23,7 @@ function createTaskCard(task) {
   const taskDueDate = document.createElement("p");
   const deleteButton = document.createElement("a");
 
+  taskCard.setAttribute("id", "draggable");
   taskCard.className = "card w-100";
   taskTitle.className = "card-header";
   cardBody.className = "card-body";
@@ -41,6 +42,10 @@ function createTaskCard(task) {
   cardBody.appendChild(taskDescription);
   cardBody.appendChild(taskDueDate);
   cardBody.appendChild(deleteButton);
+
+  $( function() {
+    $( "#draggable" ).draggable();
+  } );
 
 }
 
