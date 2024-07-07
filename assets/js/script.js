@@ -5,9 +5,7 @@ const addTask = document.querySelector("#addTask");
 const todoColumn = document.querySelector("#todoColumn");
 let entries = [];
 
-if (taskList !== null) {
-  entries = entries.concat(taskList);
-}
+
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
@@ -43,25 +41,37 @@ function createTaskCard(task) {
   cardBody.appendChild(taskDescription);
   cardBody.appendChild(taskDueDate);
   cardBody.appendChild(deleteButton);
+
 }
 
 // Todo: create a function to render the task list and make cards draggable
-function renderTaskList() {}
+function renderTaskList() {
+  if (taskList !== null) {
+    entries = entries.concat(taskList);
+
+    if (entries.length > 0)
+      for (let index = 0; index < entries.length; index++) {
+        const task = entries[index];
+        
+        createTaskCard(task);
+      }
+  }
+}
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {
   event.preventDefault();
-  const taskForm = {
+  const task = {
     taskTitle: exampleFormControlInput1.value.trim(),
     taskDueDate: datepicker.value,
     taskDescription: exampleFormControlTextarea1.value.trim(),
     id: generateTaskId(),
   };
 
-  entries.push(taskForm);
+  entries.push(task);
   localStorage.setItem("tasks", JSON.stringify(entries));
 
-  createTaskCard(taskForm);
+  createTaskCard(task);
 }
 
 // Todo: create a function to handle deleting a task
@@ -77,3 +87,5 @@ addTask.addEventListener("click", handleAddTask);
 $(function () {
   $("#datepicker").datepicker();
 });
+
+renderTaskList() 
