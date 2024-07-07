@@ -44,6 +44,7 @@ function createTaskCard(task) {
   $(function () {
     $("#" + task.id).draggable();
   });
+
   deleteButton.addEventListener("click", function(){
     handleDeleteTask(task.id);
 }, false);
@@ -83,6 +84,14 @@ function handleAddTask(event) {
 function handleDeleteTask(id) {
   const element = document.getElementById(id);
   element.remove();
+
+  for (let index = 0; index < entries.length; index++) {
+    const task = entries[index];
+
+    if (task.id == id) {
+        entries.splice(index, 1);
+    }
+  }
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
