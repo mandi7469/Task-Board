@@ -92,6 +92,7 @@ function handleDeleteTask(id) {
         entries.splice(index, 1);
     }
   }
+  localStorage.setItem("tasks", JSON.stringify(entries));
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
