@@ -5,9 +5,8 @@ const addTask = document.querySelector("#addTask");
 let entries = [];
 
 if (taskList !== null) {
-entries = entries.concat(taskList);
+  entries = entries.concat(taskList);
 }
-
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
@@ -28,12 +27,14 @@ function handleAddTask(event) {
     taskTitle: exampleFormControlInput1.value.trim(),
     taskDueDate: datepicker.value,
     taskDescription: exampleFormControlTextarea1.value.trim(),
-    id: generateTaskId()
+    id: generateTaskId(),
   };
   console.log(taskForm);
 
   entries.push(taskForm);
   localStorage.setItem("tasks", JSON.stringify(entries));
+
+  createTaskCard(taskForm);
 }
 
 // Todo: create a function to handle deleting a task
@@ -45,6 +46,8 @@ function handleDrop(event, ui) {}
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {});
 addTask.addEventListener("click", handleAddTask);
+
+
 
 $(function () {
   $("#datepicker").datepicker();
