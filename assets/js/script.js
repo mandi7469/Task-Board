@@ -21,7 +21,7 @@ function createTaskCard(task) {
   const deleteButton = document.createElement("a");
 
   taskCard.setAttribute("data-project-id", task.id);
-  taskCard.className = "card w-100";
+  taskCard.setAttribute("id", task.id);
   taskTitle.className = "card-header";
   cardBody.className = "card-body";
   taskDescription.className = "card-title";
@@ -38,6 +38,7 @@ function createTaskCard(task) {
   cardBody.appendChild(taskDescription);
   cardBody.appendChild(taskDueDate);
   cardBody.appendChild(deleteButton);
+
 
   const todoList = $('#todo-cards');
   const inProgressList = $('#in-progress-cards');
@@ -75,6 +76,24 @@ function createTaskCard(task) {
     },
     false
   );
+
+
+  if (task.taskDueDate && task.status !== "done") {
+    const now = dayjs();
+    const taskDueDate = dayjs(task.taskDueDate, "MM/DD/YYYY");
+
+    // ? If the task is due today, make the card yellow. If it is overdue, make it red.
+    if (now.isSame(taskDueDate, "day")) {
+      taskCard.className = "card w-100 bg-warning text-white";
+    } else if (now.isAfter(taskDueDate)) {
+      taskCard.className = "card w-100 bg-danger text-white";
+      deleteButton.className = "btn btn-danger border-light";
+    }
+    else {
+      taskCard.className = "card w-100"
+    }
+  }
+
 }
 
 // Todo: create a function to render the task list and make cards draggable
@@ -94,6 +113,8 @@ function renderTaskList() {
 
         createTaskCard(task);
       }
+
+
 }
 
 // Todo: create a function to handle adding a new task
@@ -158,6 +179,8 @@ $(document).ready(function () {
     entries = entries.concat(taskList);
     renderTaskList();
   }
+
+
  
 });
 
