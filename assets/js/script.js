@@ -22,6 +22,8 @@ function createTaskCard(task) {
 
   taskCard.setAttribute("data-project-id", task.id);
   taskCard.setAttribute("id", task.id);
+
+  taskCard.className = "card w-100 m-2"
   taskTitle.className = "card-header";
   cardBody.className = "card-body";
   taskDescription.className = "card-title";
@@ -43,14 +45,6 @@ function createTaskCard(task) {
   const todoList = $('#todo-cards');
   const inProgressList = $('#in-progress-cards');
   const doneList = $('#done-cards');
-  
-  if (task.status === 'to-do') {
-    todoList.append(taskCard);
-  } else if (task.status === 'in-progress') {
-    inProgressList.append(taskCard);
-  } else if (task.status === 'done') {
-    doneList.append(taskCard);
-  }
 
   $(function () {
     $(".card").draggable({
@@ -77,7 +71,6 @@ function createTaskCard(task) {
     false
   );
 
-
   if (task.taskDueDate && task.status !== "done") {
     const now = dayjs();
     const taskDueDate = dayjs(task.taskDueDate, "MM/DD/YYYY");
@@ -89,10 +82,16 @@ function createTaskCard(task) {
       taskCard.className = "card w-100 m-2 bg-danger text-white";
       deleteButton.className = "btn btn-danger border-light";
     }
-    else {
-      taskCard.className = "card w-100 m-2"
-    }
   }
+
+  if (task.status === 'to-do') {
+    todoList.append(taskCard);
+  } else if (task.status === 'in-progress') {
+    inProgressList.append(taskCard);
+  } else if (task.status === 'done') {
+    doneList.append(taskCard);
+  }
+
 
 }
 
