@@ -84,13 +84,13 @@ function createTaskCard(task) {
 
     // ? If the task is due today, make the card yellow. If it is overdue, make it red.
     if (now.isSame(taskDueDate, "day")) {
-      taskCard.className = "card w-100 bg-warning text-white";
+      taskCard.className = "card w-100 m-2 bg-warning text-white";
     } else if (now.isAfter(taskDueDate)) {
-      taskCard.className = "card w-100 bg-danger text-white";
+      taskCard.className = "card w-100 m-2 bg-danger text-white";
       deleteButton.className = "btn btn-danger border-light";
     }
     else {
-      taskCard.className = "card w-100"
+      taskCard.className = "card w-100 m-2"
     }
   }
 
