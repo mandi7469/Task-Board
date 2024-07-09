@@ -18,7 +18,8 @@ I received the application's starter code and created a task board application t
 
 The images shows the web application's apperance 
 
-![alt text](./)
+![alt text](./assets/images/Screenshot%202024-07-08%20at%209.39.56 PM.png)
+![alt text](./assets/images/Screenshot%202024-07-08%20at%209.42.20 PM.png)
 
 
 ## License
