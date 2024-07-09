@@ -4,13 +4,13 @@ let taskList = JSON.parse(localStorage.getItem("tasks"));
 const addTask = document.querySelector("#addTask");
 let entries = [];
 
-// Todo: create a function to generate a unique task id
+// Created a function to generate a unique task id
 function generateTaskId() {
   const id = crypto.randomUUID();
   return id;
 }
 
-// Todo: create a function to create a task card
+// Created a function to create a task card
 function createTaskCard(task) {
   console.log(task);
   const taskCard = document.createElement("div");
@@ -95,7 +95,7 @@ function createTaskCard(task) {
 
 }
 
-// Todo: create a function to render the task list and make cards draggable
+// Created a function to render the task list and make cards draggable
 function renderTaskList() {
   const todoList = $('#todo-cards');
   todoList.empty();
@@ -116,7 +116,7 @@ function renderTaskList() {
 
 }
 
-// Todo: create a function to handle adding a new task
+// Created a function to handle adding a new task
 function handleAddTask(event) {
   event.preventDefault();
   const task = {
@@ -133,7 +133,7 @@ function handleAddTask(event) {
   renderTaskList();
 }
 
-// Todo: create a function to handle deleting a task
+// Created a function to handle deleting a task
 function handleDeleteTask(id) {
   const element = document.getElementById(id);
   element.remove();
@@ -148,7 +148,7 @@ function handleDeleteTask(id) {
   localStorage.setItem("tasks", JSON.stringify(entries));
 }
 
-// Todo: create a function to handle dropping a task into a new status lane
+// Created a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
   const taskId = ui.draggable[0].dataset.projectId;
   const newStatus = event.target.id;
@@ -163,7 +163,7 @@ function handleDrop(event, ui) {
   renderTaskList();
 }
 
-// Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
+// When the page loads, the task list is rendered, event listeners added, lanes are droppable, and the due date field is a date picker
 $(document).ready(function () {
   $(".lane").droppable({
     accept: ".card",
